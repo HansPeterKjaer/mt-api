@@ -1,0 +1,63 @@
+.wysiwyg{
+    height: 300px;
+    overflow: auto;
+}
+
+.wysiwyg + textarea{
+ 	display:none;
+}
+
+.toolbar{
+	margin-bottom: 5px;
+	.btn-default:focus{
+		background-color:#fff;
+		outline: initial;
+	}
+	.btn-default.active{
+    	color: #333333;
+    	background-color: #e6e6e6;
+    }
+}
+
+div.itemplaceholder{
+	margin-top: 15px;
+	margin-bottom:  15px;
+	padding: 0;
+	text-align: center;	
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.mt-panel,
+.item-composer{
+	border: solid 1px #ddd;
+	/*margin-left: 15px;*/
+	margin-bottom: 20px;
+	border-radius: 4px;
+	padding: 5px;
+	
+	.clearfix;
+
+	.form-group &{
+		margin-left: 15px;
+	}
+}

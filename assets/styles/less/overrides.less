@@ -1,0 +1,40 @@
+/* Awesomplete overrides */
+.awesomplete{
+	width:100%;
+}
+
+div.awesomplete > ul {
+	margin: 0;
+	top: 100%;
+	transition: none;
+	&:before{
+		content: none;
+	}
+	li > img{
+		max-width:100px;
+	}
+}
+
+div.awesomplete + .input-group-btn{
+	top: -2px;
+}
+
+/* Bootstrap overrides */
+.table {
+  	> thead,
+  	> tbody,
+  	> tfoot {
+    	> tr {
+      		> th,
+      		> td {
+        		vertical-align: middle;
+        	}
+        }
+    }
+}
+
+a, 
+a:hover,
+a:focus {
+  color: #333;
+}

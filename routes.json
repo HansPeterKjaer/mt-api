@@ -1,0 +1,20 @@
+[    
+    {
+        "controller": "appController",
+        "action": "WorkoutGeneratorAction",
+        "getVars": ["diff", "focus", "time"]
+    },
+    {
+        "controller": "appController",
+        "action": "WorkoutGeneratorAction"
+    },
+    {
+        "controller": "appController",
+        "action": "WorkoutAction",
+        "urlVars": 1
+    },
+    {
+        "controller": "appController",
+        "action": "GetWorkoutAction"
+    }
+]

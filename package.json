@@ -1,0 +1,19 @@
+{
+  "name": "my-trainer",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-sync": "~0.5.1",
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-less": "0.12.0",
+    "grunt-webpack": "~1.0.11",
+    "grunt-concurrent": "~2.1.0",
+    "scribe-editor": "^2.3.0",
+    "scribe-plugin-toolbar": "^1.0.0",
+    "scribe-plugin-smart-lists": "^0.1.8",
+    "scribe-plugin-heading-command": "^0.1.0",
+    "scribe-plugin-formatter-plain-text-convert-new-lines-to-html": "^0.1.1",
+    "scribe-plugin-content-cleaner": "~1.0.0"
+  }
+}

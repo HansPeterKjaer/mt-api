@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<svg width="1200" height="1100" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <g>
+  <title>Defaultimage</title>
+  <path transform="rotate(180 600,551) " fill="black" id="svg_1" d="m0,45l0,1012q0,18 13,31t31,13l1112,0q19,0 31.5,-13t12.5,-31l0,-1012q0,-18 -12.5,-31t-31.5,-13l-1112,0q-18,0 -31,13t-13,31zm100,219l247,182l298,-131l-74,156l293,318l236,-288l0,500l-1000,0l0,-737zm108,487q0,56 39,95t95,39t95,-39t39,-95t-39,-95t-95,-39t-95,39t-39,95z"/>
+ </g>
+</svg>

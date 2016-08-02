@@ -1,0 +1,12 @@
+RewriteEngine on 
+
+RewriteRule assets/(.*) publish/assets/$1 [L]
+#RewriteRule  ^/$  /publish/  [R]
+
+#RewriteCond %{REQUEST_FILENAME} !css/
+#RewriteCond %{REQUEST_FILENAME} !scripts/
+#RewriteCond %{REQUEST_FILENAME} !uploads/
+
+#RewriteCond %{REQUEST_FILENAME} !assets/
+
+RewriteRule ^(.*)$  publish/index.php?url=$1 [L,PT]
