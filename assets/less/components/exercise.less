@@ -1,16 +1,30 @@
 .exercise{
+	position: relative;
+
 	&--thumbnail{
-		display: block;
-		padding: 4px;
-		margin-bottom: 20px;
-		line-height: 1.42857143;
-		background-color: #ffffff;
-		border: 1px solid #dddddd;
-		border-radius: 4px;
+		margin-bottom: 10px;
+		line-height: 1;
 
 		.exercise__description,
-		.exercise__btn{
+		.exercise__controls{
 			display: none;
+		}
+		.exercise__textwrapper{
+			position: absolute;
+			top: 0;
+			left: 0;
+			color: @text-white;
+			h1, p{
+				display: inline-block;
+				background: rgba(0,0,0,0.4);
+				margin: 0;
+			}
+			h1{
+				padding: 2px 2px 1px 2px;
+			}
+			p{
+				padding: 1px 2px 2px 2px;
+			}
 		}
 	}
 }

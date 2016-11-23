@@ -13,10 +13,11 @@ var win = window;
 //var ajax = require('./modules/ajax.js');
 //var findAncestor = require('./modules/utils/findAncestor.js');
 //var ajaxFormSubmit = require('./modules/ajaxFormSubmit.js');
+require('smoothscroll-polyfill').polyfill();
 
 
-	var exerciseThumbs = doc.querySelectorAll('.workout-exercises .exercise');
-	var startBtn =  doc.querySelector('.workoutbtn');
+	var exerciseThumbs = doc.querySelectorAll('.workout__exercises .exercise');
+	//var startBtn =  doc.querySelector('.workoutbtn');
 	var diffRange = doc.querySelector('.diff-range');
 
 	diffRange.addEventListener('input', function(evt){
@@ -24,16 +25,16 @@ var win = window;
 		diffValueElm.textContent = '(' + (6-this.value) + '/' + this.value + ')';
 	});
 
-	startBtn && startBtn.addEventListener('click', function(evt){
+	/*startBtn && startBtn.addEventListener('click', function(evt){
 		var nextExercise = null
-		if (doc.querySelector('.workout-exercises .exercise.selected')) {
-			nextExercise = doc.querySelector('.workout-exercises .exercise.selected').parentNode.nextElementSibling.childNodes[1];
+		if (doc.querySelector('.workout__exercises .exercise.selected')) {
+			nextExercise = doc.querySelector('.workout__exercises .exercise.selected').parentNode.nextElementSibling.childNodes[1];
 			console.log(nextExercise);
 		}
-		if (nextExercise == null) nextExercise = doc.querySelector('.workout-exercises .exercise');
+		if (nextExercise == null) nextExercise = doc.querySelector('.workout__exercises .exercise');
 		selectExercise(nextExercise);
 		startBtn.textContent = 'Næste Øvelse';
-	});
+	});*/
 
 	for (var i = 0; i < exerciseThumbs.length; ++i) {
 		exerciseThumbs[i].addEventListener('click', function(evt){
@@ -43,7 +44,7 @@ var win = window;
 
 	function selectExercise(target){
 		var exercise = target.cloneNode(true);
-		doc.querySelector('.workout-exercises .exercise.selected') && doc.querySelector('.workout-exercises .exercise.selected').classList.remove('selected');
+		doc.querySelector('.workout__exercises .exercise.selected') && doc.querySelector('.workout-exercises .exercise.selected').classList.remove('selected');
 		target.classList.add('selected');
 		var exercisePanel = doc.querySelector('.exercise-panel');
 
@@ -52,8 +53,12 @@ var win = window;
 		exercisePanel.appendChild(exercise);
 		var placeholder = exercisePanel.querySelector('.placeholder');
 		placeholder && placeholder.classList.add('hidden');
-		player(exercise);
+		//player(exercise);
+
+		doc.querySelector('.main-content').classList.add('extended-grid');
+		win.scrollTo({top: 0, left: 2000, behavior: 'smooth' });
 	}
+
 	function player(exercise){
 		var imageViewer = exercise.querySelector('.imageViewer');
 		var exerciseImages = imageViewer.querySelectorAll('img');
@@ -97,3 +102,7 @@ var win = window;
 		currentImage = prevImage;
 		}	
 	}
+
+
+
+	//https://pawelgrzybek.com/page-scroll-in-vanilla-javascript/

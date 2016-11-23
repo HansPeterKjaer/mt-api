@@ -4,7 +4,7 @@
 ?>
 
 <div class="row top-margin no-gutters">
-	<div class="col-xs-12 col-sm-6 " >
+	<div class="col-xs-12 col-sm-6 extendable" >
 		<div class="mt-panel mt-panel--light generator clearfix">
 			<h1 class="margin-sm">Generer workout</h1>
 			<form class="form-horizontal">
@@ -43,7 +43,7 @@
 			</form>
 		</div>
 	</div>
-	<div class="col-xs-12 col-sm-6 pull-right" >
+	<div class="col-xs-12 col-sm-6 extendable" >
 		<div class="mt-panel mt-panel--medium workout">
 <?php 
 	if($wo != null){
@@ -58,7 +58,7 @@
 ?>
 		</div>
 	</div>	
-	<div class="col-xs-12 col-sm-6" >
+	<div class="col-xs-12 col-sm-6 extendable" >
 		<div class="mt-panel mt-panel--dark exercise-panel">
 			<div class="row">
 				<div class="col-xs-12" >

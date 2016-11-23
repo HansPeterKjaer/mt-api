@@ -29,7 +29,7 @@
 <?php 
 	foreach ($wo->exercises as $ex ) {
 ?>
-	<div class="col-sm-2">
+	<div class="col-sm-3">
 		<?php ViewHelper::renderPartial("appViews/_exercise", $ex); ?>
 	</div>
 <?php 
