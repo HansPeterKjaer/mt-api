@@ -10,7 +10,7 @@ class AppController extends BaseController {
 			$status = $mapper->fetchById($viewModel->workout, $wo_id);
 		}
 
-		$this->view->output('/appViews/demo', $viewModel, false);
+		$this->view->output('/appViews/generator', $viewModel, false);
 	}
 
 	public function WorkoutGeneratorAction($diff = null, $focus = null, $time = null){
@@ -28,7 +28,7 @@ class AppController extends BaseController {
 
     	$viewModel->workout = (count($workoutListModel->workouts) > 0) ? $workoutListModel->workouts[0] : null;
 
-		$this->view->output('/appViews/demo', $viewModel);
+		$this->view->output('/appViews/generator', $viewModel);
 	}
 
 	/*public function getExerciseByIdAction($wo_id){

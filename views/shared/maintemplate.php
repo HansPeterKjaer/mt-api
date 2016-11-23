@@ -11,24 +11,17 @@
 		<title>MyTrainer</title>
 	</head>
 	<body>    
-		<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+		<nav class="mt-topbar">
 			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="<?php URLHelper::renderUrl('/'); ?>"><img src="mt/assets/images/mtlogo_b_inv.png" alt="My-trainer" /></a>
+				<div class="mt-topbar__logo">
+					<a class="" href="#"><img src="mt/assets/images/mtlogo_b_inv.png" alt="My-trainer"></a>
 				</div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Workout Generator <span class="sr-only">(current)</span></a></li>
-						<li><a href="/blog">Blog</a></li>
+				<div class="mt-topnav">
+					<ul class="nav">
+						<li class="active" ><a class="mt-topnav__link" href="/">Workout<span class="hidden-xs"> Generator</span> <span class="sr-only">(current)</span></a></li>
+						<li><a class="mt-topnav__link" href="/blog">Blog <span class="sr-only">(current)</span></a></li>
 					</ul>
-				</div><!-- /.navbar-collapse -->
+				</div>
 			</div>
 		</nav>
 		<div class="main-content container-fluid">

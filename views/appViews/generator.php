@@ -42,6 +42,8 @@
 				<button class="btn btn-lg btn-success pull-right">Generer Workout</button>
 			</form>
 		</div>
+	</div>
+	<div class="col-xs-12 col-sm-6 pull-right" >
 		<div class="mt-panel mt-panel--medium workout">
 <?php 
 	if($wo != null){
