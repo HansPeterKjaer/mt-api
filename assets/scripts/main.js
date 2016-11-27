@@ -56,7 +56,7 @@ require('smoothscroll-polyfill').polyfill();
 		exercise.parentNode.replaceChild(newExercise, exercise);
 		exercisePanel.querySelector('.mt-panel__heading .index').textContent = newExercise.dataset.index;
 		exercisePanel.querySelector('.mt-panel__heading .name').textContent = newExercise.dataset.name;
-		exercisePanel.classList.remove('hidden');
+		exercisePanel.parentNode.classList.remove('hidden');
 
 		player(newExercise);
 

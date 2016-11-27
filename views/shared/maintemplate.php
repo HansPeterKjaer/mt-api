@@ -25,11 +25,7 @@
 			</div>
 		</nav>
 		<div class="main-content container-fluid">
-			<div class="row">
-				<div class="col-sm-12">
-					<?php require($viewFile) ?>
-				</div>
-			</div>
+			<?php require($viewFile) ?>
 		</div>
 		<script src="<?php URLHelper::renderURL('assets/scripts/bundle.js'); ?>"></script>
 	</body>

@@ -3,9 +3,9 @@
 	$formData = $viewModel->formData;
 ?>
 
-<div class="row top-margin no-gutters">
-	<div class="col-xs-12 col-sm-6 extendable <?php if ($formData == null){ echo 'col-6-centered'; } ?>" >
-		<div class="mt-panel mt-panel--light generator clearfix">
+<div class="row top-margin no-gutters flexbox-container flexbox-container--justify">
+	<div class="col-xs-12 col-sm-6 extendable" >
+		<div class="mt-panel mt-panel--light mt-panel--flex generator clearfix">
 			<h1 class="mt-panel__heading">Generer workout</h1>
 			<form class="form-horizontal">
 				<div class="form-group">
@@ -44,7 +44,7 @@
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-6 extendable <?php if ($formData == null){ echo 'hidden'; } ?> " >
-		<div class="mt-panel mt-panel--medium workout">
+		<div class="mt-panel mt-panel--medium mt-panel--flex workout">
 <?php 
 	if($wo != null){
 		ViewHelper::renderPartial("appViews/_workout", $wo);
@@ -58,8 +58,8 @@
 ?>
 		</div>
 	</div>	
-	<div class="col-xs-12 col-sm-6 extendable" >
-		<div class="mt-panel mt-panel--dark exercise-panel hidden">
+	<div class="col-xs-12 col-sm-6 extendable hidden" >
+		<div class="mt-panel mt-panel--dark mt-panel--flex exercise-panel">
 			<h1 class="margin-sm mt-panel__heading">Øvelse <span class="index"></span>: <span class="name"></span></h1>
 			<div class="exercise"></div>
 		</div>		

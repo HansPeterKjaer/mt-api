@@ -7,6 +7,19 @@ body {
   }
 }
 
+.flexbox-container{
+	display: -ms-flex;
+	display: -webkit-flex;
+	display: flex;
+
+	&--justify{
+		justify-content: center;
+	}
+	> [class^="col-"]{
+		float:none;
+	}
+}	
+
 .clear {
   clear: both;
 }
