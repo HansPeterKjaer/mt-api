@@ -27,7 +27,8 @@
 			<div class="row small-gutters">
 
 <?php 
-	foreach ($wo->exercises as $ex ) {
+	foreach ($wo->exercises as $key=>$ex ) {
+		$ex->index = $key;
 ?>
 	<div class="col-sm-3">
 		<?php ViewHelper::renderPartial("appViews/_exercise", $ex); ?>

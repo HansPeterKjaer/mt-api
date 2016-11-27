@@ -1,6 +1,31 @@
 .exercise{
 	position: relative;
 
+	.exercise__controls{
+		display: inline-block;
+    	background: rgba(0,0,0,0.3);
+    	position: relative;
+    	left: 5px;
+    	top: -36px;
+	}
+	.exercise__btn{
+		width:30px;
+		height: 30px;
+		padding: 0;
+		border: none;
+		background-color: transparent;
+		
+		&:focus{
+			outline:0;
+		}
+		
+		svg{
+			fill: #fff;
+			width: 30px;
+			height: 100%;
+		}
+	}
+
 	&--thumbnail{
 		margin-bottom: 10px;
 		line-height: 1;
@@ -17,13 +42,8 @@
 			h1, p{
 				display: inline-block;
 				background: rgba(0,0,0,0.4);
+				padding: 2px;
 				margin: 0;
-			}
-			h1{
-				padding: 2px 2px 1px 2px;
-			}
-			p{
-				padding: 1px 2px 2px 2px;
 			}
 		}
 	}

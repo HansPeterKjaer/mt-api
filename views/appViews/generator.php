@@ -4,9 +4,9 @@
 ?>
 
 <div class="row top-margin no-gutters">
-	<div class="col-xs-12 col-sm-6 extendable" >
+	<div class="col-xs-12 col-sm-6 extendable <?php if ($formData == null){ echo 'col-6-centered'; } ?>" >
 		<div class="mt-panel mt-panel--light generator clearfix">
-			<h1 class="margin-sm">Generer workout</h1>
+			<h1 class="mt-panel__heading">Generer workout</h1>
 			<form class="form-horizontal">
 				<div class="form-group">
 					<label class="col-xs-4">Cardio/Styrke</label>
@@ -43,7 +43,7 @@
 			</form>
 		</div>
 	</div>
-	<div class="col-xs-12 col-sm-6 extendable" >
+	<div class="col-xs-12 col-sm-6 extendable <?php if ($formData == null){ echo 'hidden'; } ?> " >
 		<div class="mt-panel mt-panel--medium workout">
 <?php 
 	if($wo != null){
@@ -59,13 +59,9 @@
 		</div>
 	</div>	
 	<div class="col-xs-12 col-sm-6 extendable" >
-		<div class="mt-panel mt-panel--dark exercise-panel">
-			<div class="row">
-				<div class="col-xs-12" >
-					<h1 class="margin-sm">Øvelse</h1>
-					<p class="placeholder">Generer en workout ud fra dine parametre og klik start for at komme igang!</p>
-				</div>
-			</div>
+		<div class="mt-panel mt-panel--dark exercise-panel hidden">
+			<h1 class="margin-sm mt-panel__heading">Øvelse <span class="index"></span>: <span class="name"></span></h1>
+			<div class="exercise"></div>
 		</div>		
 	</div>
 </div>

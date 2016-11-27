@@ -43,33 +43,41 @@ require('smoothscroll-polyfill').polyfill();
 	}
 
 	function selectExercise(target){
-		var exercise = target.cloneNode(true);
+		var newExercise = target.cloneNode(true);
 		doc.querySelector('.workout__exercises .exercise.selected') && doc.querySelector('.workout-exercises .exercise.selected').classList.remove('selected');
 		target.classList.add('selected');
 		var exercisePanel = doc.querySelector('.exercise-panel');
 
-		var currentExercise = exercisePanel.querySelector('.exercise');
-		currentExercise && exercisePanel.removeChild(currentExercise);
-		exercisePanel.appendChild(exercise);
-		var placeholder = exercisePanel.querySelector('.placeholder');
-		placeholder && placeholder.classList.add('hidden');
-		//player(exercise);
+		var exercise = exercisePanel.querySelector('.exercise');
+		//currentExercise && exercisePanel.removeChild(currentExercise);
+
+		//while (exercise.firstChild) { exercise.removeChild(exercise.firstChild); }
+		newExercise.classList.remove('exercise--thumbnail');
+		exercise.parentNode.replaceChild(newExercise, exercise);
+		exercisePanel.querySelector('.mt-panel__heading .index').textContent = newExercise.dataset.index;
+		exercisePanel.querySelector('.mt-panel__heading .name').textContent = newExercise.dataset.name;
+		exercisePanel.classList.remove('hidden');
+
+		player(newExercise);
 
 		doc.querySelector('.main-content').classList.add('extended-grid');
+
 		win.scrollTo({top: 0, left: 2000, behavior: 'smooth' });
 	}
 
 	function player(exercise){
-		var imageViewer = exercise.querySelector('.imageViewer');
-		var exerciseImages = imageViewer.querySelectorAll('img');
-		var currentImage = imageViewer.querySelector('img.current');
+		var imageViewer = exercise.querySelector('.exercise__imageviewer');
+		var exerciseImages = imageViewer.querySelectorAll('.imageviewer__image');
+		var currentImage = imageViewer.querySelector('.imageviewer__image.current');
 		var exerciseTimer = null;
 
 		var playBtn = exercise.querySelector('.btn-play');
+		var pauseBtn = exercise.querySelector('.btn-pause');
 		var prevBtn = exercise.querySelector('.btn-prev');
 		var nextBtn = exercise.querySelector('.btn-next');
 
 		playBtn.addEventListener('click', play);
+		pauseBtn.addEventListener('click', pause);
 		nextBtn.addEventListener('click', next);
 		prevBtn.addEventListener('click', prev);
 
@@ -81,9 +89,15 @@ require('smoothscroll-polyfill').polyfill();
 				exerciseTimer = setInterval(playCallback, 1000);
 			}
 		}
+
+		function pause(evt){
+			if (exerciseTimer) {
+				clearInterval(exerciseTimer);
+			}
+		}
 		
 		function playCallback(){
-		next();
+			next();
 		}
 
 		function next(evt){
