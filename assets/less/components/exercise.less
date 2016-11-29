@@ -1,14 +1,71 @@
 .exercise{
+	
 	position: relative;
 
-	.exercise__controls{
+	&--thumbnail{
+		margin-bottom: 10px;
+		line-height: 1;
+
+		.mt-panel__heading,
+		.exercise__description,
+		.imageviewer__controls{
+			display: none;
+		}
+		.exercise__textwrapper{
+			position: absolute;
+			top: 0;
+			left: 0;
+			color: @text-white;
+			h1, p{
+				//display: inline-block;
+				background: rgba(0,0,0,0.4);
+				padding: 2px;
+				margin: 0;
+				float: left;
+				clear: both;
+			}
+		}
+
+		&:after{
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			content: ' ';
+			background: url('/mtassets/images/playicon.svg'), rgba(0,0,0,0.4);;
+			background-size: 25px 25px;
+			background-position: 75% 50%;
+			background-repeat: no-repeat;
+			border-radius: 15px;	
+			height: 30px;
+		  	width: 30px;
+		  	margin: -15px 0 0 -15px;
+		}
+	}
+}
+
+.imageviewer{
+	
+	position: relative;
+
+	&__image{
+		width:100%;
+		display:none;
+
+		&.current{
+			display: inline-block;
+		}
+	}
+
+	&__controls{
 		display: inline-block;
     	background: rgba(0,0,0,0.3);
-    	position: relative;
+    	position: absolute;
     	left: 5px;
-    	top: -36px;
+    	bottom: 5px;
 	}
-	.exercise__btn{
+
+	&__btn{
 		width:30px;
 		height: 30px;
 		padding: 0;
@@ -23,39 +80,6 @@
 			fill: #fff;
 			width: 30px;
 			height: 100%;
-		}
-	}
-
-	&--thumbnail{
-		margin-bottom: 10px;
-		line-height: 1;
-
-		.exercise__description,
-		.exercise__controls{
-			display: none;
-		}
-		.exercise__textwrapper{
-			position: absolute;
-			top: 0;
-			left: 0;
-			color: @text-white;
-			h1, p{
-				display: inline-block;
-				background: rgba(0,0,0,0.4);
-				padding: 2px;
-				margin: 0;
-			}
-		}
-	}
-}
-
-.imageviewer{
-	&__image{
-		width:100%;
-		display:none;
-
-		&.current{
-			display: inline-block;
 		}
 	}
 }

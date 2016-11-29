@@ -1,10 +1,20 @@
+html,
+body{
+	height: 100%;
+	margin: 0px;
+}
+
 body {
   /* For the Footer Menu */
-  padding-bottom: 51px;
+  //padding-bottom: 51px;
   padding-top: 36px;
   @media (min-width: @screen-sm){
   	padding-top: 50px;
   }
+}
+
+.main-content{
+	height: 100%;
 }
 
 .flexbox-container{
@@ -17,6 +27,29 @@ body {
 	}
 	> [class^="col-"]{
 		float:none;
+	}
+}
+
+.flexbox-scroll-container{
+	display: -ms-flex;
+	display: -webkit-flex;
+	display: flex;
+	flex-wrap: nowrap;
+  	overflow-x: auto;
+  	scroll-snap-type: mandatory;
+  	scroll-behavior: smooth;
+
+  	max-height: 100%;
+  	-webkit-overflow-scrolling: touch;
+  	-ms-overflow-style: -ms-autohiding-scrollbar;
+
+	&--justify{
+		justify-content: center;
+	}
+	> [class^="col-"]{
+		float:none;
+		flex: 0 0 auto;
+		scroll-snap-coordinate: 0% 0%;
 	}
 }	
 

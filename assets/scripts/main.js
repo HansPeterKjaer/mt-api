@@ -54,15 +54,16 @@ require('smoothscroll-polyfill').polyfill();
 		//while (exercise.firstChild) { exercise.removeChild(exercise.firstChild); }
 		newExercise.classList.remove('exercise--thumbnail');
 		exercise.parentNode.replaceChild(newExercise, exercise);
-		exercisePanel.querySelector('.mt-panel__heading .index').textContent = newExercise.dataset.index;
-		exercisePanel.querySelector('.mt-panel__heading .name').textContent = newExercise.dataset.name;
+		//exercisePanel.querySelector('.mt-panel__heading .index').textContent = newExercise.dataset.index;
+		//exercisePanel.querySelector('.mt-panel__heading .name').textContent = newExercise.dataset.name;
 		exercisePanel.parentNode.classList.remove('hidden');
 
 		player(newExercise);
 
 		doc.querySelector('.main-content').classList.add('extended-grid');
 
-		win.scrollTo({top: 0, left: 2000, behavior: 'smooth' });
+		var scrollContainer = doc.querySelector('.flexbox-scroll-container');
+		scrollContainer.scrollTo({top: 0, left: 2000, behavior: 'smooth' });
 	}
 
 	function player(exercise){
@@ -73,12 +74,20 @@ require('smoothscroll-polyfill').polyfill();
 
 		var playBtn = exercise.querySelector('.btn-play');
 		var pauseBtn = exercise.querySelector('.btn-pause');
+		var stopBtn = exercise.querySelector('.btn-stop');
 		var prevBtn = exercise.querySelector('.btn-prev');
 		var nextBtn = exercise.querySelector('.btn-next');
 
 		playBtn.addEventListener('click', play);
 		pauseBtn.addEventListener('click', pause);
-		nextBtn.addEventListener('click', next);
+		stopBtn.addEventListener('click', stop);
+		nextBtn.addEventListener('click', function(){ 
+			if (exerciseTimer) {
+				clearInterval(exerciseTimer);
+				exerciseTimer = null;
+			} 
+			next(); 
+		});
 		prevBtn.addEventListener('click', prev);
 
 		function play(evt){
@@ -86,37 +95,44 @@ require('smoothscroll-polyfill').polyfill();
 				clearInterval(exerciseTimer);
 				exerciseTimer = null;
 			}else{
-				exerciseTimer = setInterval(playCallback, 1000);
+				exerciseTimer = setInterval(next, 1000);
 			}
 		}
 
 		function pause(evt){
 			if (exerciseTimer) {
 				clearInterval(exerciseTimer);
+				exerciseTimer = null;
 			}
 		}
 		
-		function playCallback(){
-			next();
+		function stop(evt){
+			if (exerciseTimer) {
+				clearInterval(exerciseTimer);
+				exerciseTimer = null;
+			}
+			exerciseImages[0].classList.add('current');
+			currentImage.classList.remove('current');
+			currentImage = exerciseImages[0];
 		}
 
 		function next(evt){
-		var nextImage = currentImage.nextElementSibling;
-		if (nextImage == null) nextImage = exerciseImages[0];
-		nextImage.classList.add('current');
-		currentImage.classList.remove('current');
-		currentImage = nextImage;
+			var nextImage = currentImage.nextElementSibling;
+			if (nextImage == null) nextImage = exerciseImages[0];
+			nextImage.classList.add('current');
+			currentImage.classList.remove('current');
+			currentImage = nextImage;
 		}
 
 		function prev(evt){
-		var prevImage = currentImage.previousElementSibling;
-		if (prevImage == null) prevImage = exerciseImages[exerciseImages.length-1];
-		prevImage.classList.add('current');
-		currentImage.classList.remove('current');
-		currentImage = prevImage;
+			if (exerciseTimer) {
+				clearInterval(exerciseTimer);
+				exerciseTimer = null;
+			}
+			var prevImage = currentImage.previousElementSibling;
+			if (prevImage == null) prevImage = exerciseImages[exerciseImages.length-1];
+			prevImage.classList.add('current');
+			currentImage.classList.remove('current');
+			currentImage = prevImage;
 		}	
 	}
-
-
-
-	//https://pawelgrzybek.com/page-scroll-in-vanilla-javascript/
