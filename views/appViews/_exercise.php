@@ -9,7 +9,7 @@
 				$current = true;
 				foreach($ex->images->items as $item){ 
 			?>
-				<img class="imageviewer__image <?php if ($current == true){ echo 'current'; } ?>" src="<?php URLHelper::renderURL("mtassets/uploads/$item->imageName") ?>" />
+				<img class="imageviewer__image <?php if ($current == true){ echo 'current'; } ?>" src="<?php URLHelper::renderURL("/mtassets/exercise-images/$item->imageName") ?>" />
 			<?php 
 				$current = false;
 			}?>

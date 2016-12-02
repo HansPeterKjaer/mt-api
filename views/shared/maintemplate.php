@@ -7,7 +7,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<link rel="icon" href="../../favicon.ico">
-		<link href="<?php URLHelper::renderUrl('/assets/css/base.css')?>" rel="stylesheet">
+		<link href="<?php URLHelper::renderURL('assets/css/base.css')?>" rel="stylesheet">
 		<title>MyTrainer</title>
 	</head>
 	<body>    
@@ -24,9 +24,13 @@
 				</div>
 			</div>
 		</nav>
+
+
 		<div class="main-content container-fluid">
 			<?php require($viewFile) ?>
 		</div>
+
+		
 		<script src="<?php URLHelper::renderURL('assets/scripts/bundle.js'); ?>"></script>
 	</body>
 </html> 

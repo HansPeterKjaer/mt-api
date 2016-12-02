@@ -11,10 +11,50 @@ var win = window;
 //var alertMsg = require('./modules/alertMsg.js');
 //var autocomplete = require('./modules/autocomplete.js');
 //var ajax = require('./modules/ajax.js');
-//var findAncestor = require('./modules/utils/findAncestor.js');
+var findAncestor = require('./modules/utils/findAncestor.js');
 //var ajaxFormSubmit = require('./modules/ajaxFormSubmit.js');
-require('smoothscroll-polyfill').polyfill();
+//require('smoothscroll-polyfill').polyfill();
+var Swiper = require('swiper');
 
+	var hSwiper = new Swiper ('.swiper-container-h', {
+    	// Optional parameters
+    	direction: 'horizontal',
+    	loop: false,
+     
+	    // Navigation arrows
+	    //nextButton: '.swiper-button-next',
+	    //prevButton: '.swiper-button-prev',
+	    
+	    // And if we need scrollbar
+	    scrollbar: '.swiper-scrollbar-h',
+	    scrollbarHide: false,
+	    scrollbarDraggable: true,
+	    scrollbarSnapOnRelease: true,
+        slidesPerView: 'auto',
+        //centeredSlides: false,
+        grabCursor: true
+  	})   
+	var v2Swiper = new Swiper('.swiper-container-v2', {
+        scrollbar: '.swiper-scrollbar-v2',
+        direction: 'vertical',
+        slidesPerView: 'auto',
+        mousewheelControl: true,
+        freeMode: true,
+        touchMoveStopPropagation: false
+    });
+   	var v3Swiper = new Swiper('.swiper-container-v3', {
+        scrollbar: '.swiper-scrollbar-v3',
+        direction: 'vertical',
+        slidesPerView: 'auto',
+        mousewheelControl: true,
+        freeMode: true,
+        touchMoveStopPropagation: false
+    });     
+
+    var exercisePanel = doc.querySelector('.exercise-panel');
+    if(!exercisePanel.classList.contains('hidden')){
+    	setTimeout(function(){ hSwiper.slideTo(2, 1000);}, 300);
+    }
 
 	var exerciseThumbs = doc.querySelectorAll('.workout__exercises .exercise');
 	//var startBtn =  doc.querySelector('.workoutbtn');
@@ -44,7 +84,7 @@ require('smoothscroll-polyfill').polyfill();
 
 	function selectExercise(target){
 		var newExercise = target.cloneNode(true);
-		doc.querySelector('.workout__exercises .exercise.selected') && doc.querySelector('.workout-exercises .exercise.selected').classList.remove('selected');
+		doc.querySelector('.workout__exercises .exercise.selected') && doc.querySelector('.workout__exercises .exercise.selected').classList.remove('selected');
 		target.classList.add('selected');
 		var exercisePanel = doc.querySelector('.exercise-panel');
 
@@ -56,14 +96,17 @@ require('smoothscroll-polyfill').polyfill();
 		exercise.parentNode.replaceChild(newExercise, exercise);
 		//exercisePanel.querySelector('.mt-panel__heading .index').textContent = newExercise.dataset.index;
 		//exercisePanel.querySelector('.mt-panel__heading .name').textContent = newExercise.dataset.name;
-		exercisePanel.parentNode.classList.remove('hidden');
+		var swiperSlide = findAncestor(exercisePanel, 'swiper-slide')
+		swiperSlide.classList.remove('hidden');
 
+		hSwiper.update(true);
+		v3Swiper.update(true);
+		hSwiper.slideNext();
 		player(newExercise);
 
 		doc.querySelector('.main-content').classList.add('extended-grid');
 
-		var scrollContainer = doc.querySelector('.flexbox-scroll-container');
-		scrollContainer.scrollTo({top: 0, left: 2000, behavior: 'smooth' });
+		//win.scrollTo({top: 0, left: 2000, behavior: 'smooth' });
 	}
 
 	function player(exercise){

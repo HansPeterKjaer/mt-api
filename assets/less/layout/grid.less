@@ -1,23 +1,40 @@
 html,
-body{
+body {
 	height: 100%;
 	margin: 0px;
 }
 
 body {
-  /* For the Footer Menu */
-  //padding-bottom: 51px;
   padding-top: 36px;
   @media (min-width: @screen-sm){
   	padding-top: 50px;
   }
 }
 
-.main-content{
+.main-content {
 	height: 100%;
+	width: 100%;
 }
 
-.flexbox-container{
+.swiper-container {
+    //width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+	// width: 50% !important;
+}
+
+
+.clear {
+  clear: both;
+}
+
+.clear-left {
+	clear: left;
+}
+
+/*.flexbox-container{
 	display: -ms-flex;
 	display: -webkit-flex;
 	display: flex;
@@ -29,34 +46,27 @@ body {
 		float:none;
 	}
 }
+*/
+/*.-flexbox-scroll-container{
+	//display: -ms-flex;
+	//display: -webkit-flex;
+	//display: flex;
+  	//overflow-x: auto;
+  	//scroll-snap-type: mandatory;
 
-.flexbox-scroll-container{
-	display: -ms-flex;
-	display: -webkit-flex;
-	display: flex;
-	flex-wrap: nowrap;
-  	overflow-x: auto;
-  	scroll-snap-type: mandatory;
   	scroll-behavior: smooth;
 
-  	max-height: 100%;
+  	height: 100%;
+  	
   	-webkit-overflow-scrolling: touch;
   	-ms-overflow-style: -ms-autohiding-scrollbar;
 
 	&--justify{
 		justify-content: center;
 	}
+	flex-wrap: nowrap;
 	> [class^="col-"]{
 		float:none;
-		flex: 0 0 auto;
-		scroll-snap-coordinate: 0% 0%;
+		//flex: 0 0 auto;
 	}
-}	
-
-.clear {
-  clear: both;
-}
-
-.clear-left{
-	clear: left;
-}
+}*/	

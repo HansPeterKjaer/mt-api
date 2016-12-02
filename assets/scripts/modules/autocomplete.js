@@ -59,6 +59,6 @@ function subQueryCB(evt){
 }
 
 function itemCB(item, input) {
-		var html = '<img src="' +  MT.BasePath + '/assets/uploads/' + item + '"/>' + item.replace(RegExp(awesomplete.$.regExpEscape(input.trim()), 'gi'), '<mark>$&</mark>');
+		var html = '<img src="' +  MT.BasePath + '/mtassets/exercise-images/' + item + '"/>' + item.replace(RegExp(awesomplete.$.regExpEscape(input.trim()), 'gi'), '<mark>$&</mark>');
 		return awesomplete.$.create('li', {'innerHTML': html, 'aria-selected': 'false'});
 }
