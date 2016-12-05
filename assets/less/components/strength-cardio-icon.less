@@ -1,0 +1,30 @@
+.strength-cardio-icon{
+	vertical-align: middle;
+	&--sm{
+		height: 14px;
+		width: auto;
+	}
+	&--md{
+		height: 18px;
+		width: auto;
+	}
+	&--lg{
+		height: 24px;
+		width: auto;
+	}
+	.bump{
+		animation-name: grow;
+		animation-duration: 1s;
+		animation-delay: -0.5s;
+		animation-play-state: paused;
+		transform-origin: 144px 74px;
+	}
+	@keyframes grow {
+		from {
+		transform: scale(0);
+		}
+		to {
+		transform: scale(1);
+		}
+	}
+}

@@ -59,10 +59,12 @@ var Swiper = require('swiper');
 	var exerciseThumbs = doc.querySelectorAll('.workout__exercises .exercise');
 	//var startBtn =  doc.querySelector('.workoutbtn');
 	var diffRange = doc.querySelector('.diff-range');
+	var strengthCardioIcon = doc.querySelector('.strength-cardio-icon'); 
 
 	diffRange.addEventListener('input', function(evt){
 		var diffValueElm = doc.querySelector('#diff-value');
-		diffValueElm.textContent = '(' + (6-this.value) + '/' + this.value + ')';
+		diffValueElm.textContent = '(' + Math.round(6-this.value) + '/' + Math.round(this.value) + ')';
+		strengthCardioIcon.querySelector('.bump').style.animationDelay = ((this.value-1)*-0.2) + "s";
 	});
 
 	/*startBtn && startBtn.addEventListener('click', function(evt){
