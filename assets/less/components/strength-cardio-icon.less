@@ -13,18 +13,35 @@
 		width: auto;
 	}
 	.bump{
-		animation-name: grow;
+		animation-name: bgrow;
 		animation-duration: 1s;
 		animation-delay: -0.5s;
 		animation-play-state: paused;
-		transform-origin: 144px 74px;
+		transform-origin: 150px 74px;
 	}
-	@keyframes grow {
+	.heart{
+		animation-name: hgrow;
+		animation-duration: 1s;
+		animation-delay: -0.5s;
+		animation-play-state: paused;
+		transform-origin: 70px 50px;
+	}
+	@keyframes bgrow {
 		from {
-		transform: scale(0);
+			transform: scale(0.2);
 		}
 		to {
-		transform: scale(1);
+			transform: scale(1);
+		}
+	}
+	@keyframes hgrow {
+		from {
+			transform: scale(1);
+			opacity: 1;
+		}
+		to {
+			transform: scale(0.4);
+			opacity: 0.4;
 		}
 	}
 }

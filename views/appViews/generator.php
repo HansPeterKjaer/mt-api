@@ -6,13 +6,13 @@
 	<div class="swiper-wrapper top-margin no-gutters">
 		
 		<div class="col-xs-12 col-sm-6 col-lg-4 swiper-slide" >
-			<div class="mt-panel clearfix mt-panel--light -mt-panel--flex generator-panel">
+			<div class="mt-panel clearfix mt-panel--light generator-panel">
 				<?php ViewHelper::renderPartial("appViews/_generatorForm", $viewModel); ?>
 			</div>
 		</div>
 
 
-		<div class="col-xs-12 col-sm-6 col-lg-4 swiper-slide <?php if ($formData == null){ echo 'hidden'; } ?> " >
+		<div class="col-xs-12 col-sm-6 col-lg-4 swiper-slide <?php if ($formData == null && $wo == null){ echo 'hidden'; } ?> " >
 			<div class="swiper-container swiper-container-v2">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide mt-panel clearfix mt-panel--medium workout-panel">

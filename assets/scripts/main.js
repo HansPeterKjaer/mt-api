@@ -65,6 +65,7 @@ var Swiper = require('swiper');
 		var diffValueElm = doc.querySelector('#diff-value');
 		diffValueElm.textContent = '(' + Math.round(6-this.value) + '/' + Math.round(this.value) + ')';
 		strengthCardioIcon.querySelector('.bump').style.animationDelay = ((this.value-1)*-0.2) + "s";
+		strengthCardioIcon.querySelector('.heart').style.animationDelay = ((this.value-1)*-0.2) + "s";
 	});
 
 	/*startBtn && startBtn.addEventListener('click', function(evt){

@@ -1,82 +1,82 @@
 <?php
 
 class WorkoutModelMapper extends BaseModelMapper{
-	public function insert($name, $diff, $focus, $descr, $protocol, $exercises = []){
-    	$dbh = $this->dbhandle;
-    	$status = false;
-    	$msg = "";
+	/*public function insert($name, $diff, $focus, $descr, $protocol, $exercises = []){
+		$dbh = $this->dbhandle;
+		$status = false;
+		$msg = "";
 
-    	$dbh->beginTransaction();
-    	try {
+		$dbh->beginTransaction();
+		try {
 			$stmt = $dbh->prepare("INSERT INTO workout (wo_name, wo_diff, wo_focus, wo_desc, wo_pr_id) VALUES (:name, :diff, :focus, :descr, :protocol)");
 			$stmt->bindParam(':name', $name);
 			$stmt->bindParam(':diff', $diff);
-	        $stmt->bindParam(':focus', $focus);
-	        $stmt->bindParam(':descr', $descr);
-	        $stmt->bindParam(':protocol', $protocol);
-	        $stmt->execute();
-	        
-	        $id = $dbh->lastInsertId();
-	        $stmt = $dbh->prepare("INSERT INTO workout_exercise (ex_id, wo_id, ex_index) VALUES (:ex_id, {$id}, :ex_index )");
+			$stmt->bindParam(':focus', $focus);
+			$stmt->bindParam(':descr', $descr);
+			$stmt->bindParam(':protocol', $protocol);
+			$stmt->execute();
+			
+			$id = $dbh->lastInsertId();
+			$stmt = $dbh->prepare("INSERT INTO workout_exercise (ex_id, wo_id, ex_index) VALUES (:ex_id, {$id}, :ex_index )");
 			$count = 0;
 			
 			foreach ($exercises as $ex) {
 				$c = $count++;
 				$stmt->bindParam(':ex_id', $ex);
 				$stmt->bindParam(':ex_index', $c, PDO::PARAM_INT);
-	        	$stmt->execute();
-	        }	        
+				$stmt->execute();
+			}	        
 
-	        $dbh->commit();
-	        $msg = "Exercise successfully created";
-	        $status = true;
+			$dbh->commit();
+			$msg = "Exercise successfully created";
+			$status = true;
 
-	    } catch (Exception $e) {
-	    	$dbh->rollback();
+		} catch (Exception $e) {
+			$dbh->rollback();
 			if (@constant('DEVELOPMENT_ENVIRONMENT') == false)
 				$msg = "Db error could not perform request";
 			else
 				$msg = $e->xdebug_message;
 		}
 		return ['status' => $status, 'msg' => $msg];
-    }
+	}*/
 
-    public function update($id, $name, $diff, $focus, $descr, $protocol, $exercises = []){
-    	$dbh = $this->dbhandle;
-    	$status = false;
-    	$msg = "";
+	/*public function update($id, $name, $diff, $focus, $descr, $protocol, $exercises = []){
+		$dbh = $this->dbhandle;
+		$status = false;
+		$msg = "";
 
-    	$dbh->beginTransaction();
-    	try {
-    		$stmt = $dbh->prepare("UPDATE workout SET wo_name = :name, wo_diff = :diff, wo_focus = :focus, wo_desc = :descr, wo_pr_id = :protocol WHERE wo_id = :id");
+		$dbh->beginTransaction();
+		try {
+			$stmt = $dbh->prepare("UPDATE workout SET wo_name = :name, wo_diff = :diff, wo_focus = :focus, wo_desc = :descr, wo_pr_id = :protocol WHERE wo_id = :id");
 			$stmt->bindParam(':id', $id);
 			$stmt->bindParam(':name', $name);
 			$stmt->bindParam(':diff', $diff);
-	        $stmt->bindParam(':focus', $focus);
-	        $stmt->bindParam(':descr', $descr);
-	        $stmt->bindParam(':protocol', $protocol);
-	        $result = $stmt->execute();
+			$stmt->bindParam(':focus', $focus);
+			$stmt->bindParam(':descr', $descr);
+			$stmt->bindParam(':protocol', $protocol);
+			$result = $stmt->execute();
 
-	        if($result != false){
-	        	$stmt = $dbh->prepare("DELETE FROM workout_exercise WHERE wo_id = :id");
-	        	$stmt->bindParam(':id', $id);
-		        $stmt->execute();
+			if($result != false){
+				$stmt = $dbh->prepare("DELETE FROM workout_exercise WHERE wo_id = :id");
+				$stmt->bindParam(':id', $id);
+				$stmt->execute();
 
-		        $count = 0;
-		        $stmt = $dbh->prepare("INSERT INTO workout_exercise (ex_id, wo_id, ex_index) VALUES (:ex_id, :wo_id, :ex_index)");
-		        $stmt->bindParam(':wo_id', $id);
+				$count = 0;
+				$stmt = $dbh->prepare("INSERT INTO workout_exercise (ex_id, wo_id, ex_index) VALUES (:ex_id, :wo_id, :ex_index)");
+				$stmt->bindParam(':wo_id', $id);
 				
 				foreach ($exercises as $ex_id) {
 					$c = $count++;
 					$stmt->bindParam(':ex_id', $ex_id, PDO::PARAM_INT);
 					$stmt->bindParam(':ex_index', $c, PDO::PARAM_INT);
-		        	$stmt->execute();
-		        }	
-	        }
-	        
-	        $dbh->commit();
-	        $msg = "Exercise successfully updated";
-	        $status = true;
+					$stmt->execute();
+				}	
+			}
+			
+			$dbh->commit();
+			$msg = "Exercise successfully updated";
+			$status = true;
 
 		}catch (Exception $e) {
 			$dbh->rollback();
@@ -86,33 +86,33 @@ class WorkoutModelMapper extends BaseModelMapper{
 				$msg = $e->xdebug_message;
 		}
 		return ['status' => $status, 'msg' => $msg];
-    } 
+	}*/ 
 
-    /*public function fetch(WorkoutModel &$model){
-    	$dbh = $this->dbhandle;
-    	$stmt = $dbh->prepare("select * from workout where wo_id = :id");
+	/*public function fetch(WorkoutModel &$model){
+		$dbh = $this->dbhandle;
+		$stmt = $dbh->prepare("select * from workout where wo_id = :id");
 		$stmt->execute(array(':id' => $model->id));
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		
 		if (!empty($row)){
-    		$model->id = $row['wo_id'];
-    		$model->name = $row['wo_name'];
+			$model->id = $row['wo_id'];
+			$model->name = $row['wo_name'];
 			$model->diff = $row['wo_diff'];
 			$model->focus = $row['wo_focus'];
 			$model->descr = $row['wo_desc'];
 		}
-    }*/
-    public function fetchById(WorkoutModel &$model, $id){
-    	$dbh = $this->dbhandle;
-    	try{
-	    	$stmt = $dbh->prepare("select * from workout where wo_id = :id");
+	}*/
+	public function fetchById(WorkoutModel &$model, $id){
+		$dbh = $this->dbhandle;
+		try{
+			$stmt = $dbh->prepare("select * from workout where wo_id = :id");
 			$stmt->execute(array(':id' => $id));
 			$row = $stmt->fetch(PDO::FETCH_ASSOC);
 			
 			if (!empty($row)){
 				//$model = new WorkoutModel();
-	    		$model->id = $row['wo_id'];
-	    		$model->name = $row['wo_name'];
+				$model->id = $row['wo_id'];
+				$model->name = $row['wo_name'];
 				$model->diff = $row['wo_diff'];
 				$model->focus = $row['wo_focus'];
 				$model->descr = $row['wo_desc'];
@@ -136,18 +136,18 @@ class WorkoutModelMapper extends BaseModelMapper{
 		}
 		catch (PDOException $e) {
 			Logger::log($e);
-		    return false;
+			return false;
 		}
-    }
+	}
 
-    /*public function fetchAll(WorkoutListModel &$model){
-    	return $this->search($model, 0);
+	/*public function fetchAll(WorkoutListModel &$model){
+		return $this->search($model, 0);
 	}*/
 
-	public function search(WorkoutListModel &$model, $itemsPerPage = 20, $page = 0, $term = '', $firstLetter = '', $sort = null, $diff = null, $focus = null){
-    	$dbh = $this->dbhandle;
-    	$success = false;
-    	$msg = "";
+	public function search(WorkoutListModel &$model, $itemsPerPage = 20, $page = 0, $term = '', $firstLetter = '', $sort = null, $diff = null, $focus = null, $wId = null){
+		$dbh = $this->dbhandle;
+		$success = false;
+		$msg = "";
 
 		$page = $page; 
 		$offset = ($page > 0) ? ($page - 1) * $itemsPerPage : 0;
@@ -166,6 +166,7 @@ class WorkoutModelMapper extends BaseModelMapper{
 		if (strtolower($sort) == 'name-asc'){ $sortStatement = 'ORDER BY wo_name ASC'; }
 		if (strtolower($sort) == 'name-desc'){ $sortStatement = 'ORDER BY wo_name DESC'; }
 		if (strtolower($sort) == 'rand'){ $sortStatement = 'ORDER BY RAND()'; }
+		if (strtolower($sort) == 'rand' && $wId){ $sortStatement = 'ORDER BY wo_id=:wId ASC, RAND()'; }
 		
 		$term = (!empty($term)) ? "%$term%" : $term;
 		$firstLetter = (!empty($firstLetter)) ? "$firstLetter%" : $firstLetter;
@@ -174,9 +175,9 @@ class WorkoutModelMapper extends BaseModelMapper{
 		$sqlSelect = "SELECT wo_id AS id, wo_name AS name, wo_diff AS diff, wo_focus AS focus, wo_desc AS descr, wo_pr_id as prtc FROM workout {$sqlCondition} {$sortStatement} LIMIT :offset, :limit ";
 		//echo $sqlSelect;
 
-    	try {
-    		// get count;
-    		$stmt = $dbh->prepare($sqlCount);	
+		try {
+			// get count;
+			$stmt = $dbh->prepare($sqlCount);	
 			
 			if (!empty($term))  		$stmt->bindParam(':term', $term);
 			if (!empty($firstLetter))  	$stmt->bindParam(':firstLetter', $firstLetter); 
@@ -184,9 +185,9 @@ class WorkoutModelMapper extends BaseModelMapper{
 			if (!empty($focus))  		$stmt->bindParam(':focus', $focus);
 
 			$stmt->execute();
-	        $rows = $stmt->fetchColumn(); 
+			$rows = $stmt->fetchColumn(); 
 
-	        // get workouts
+			// get workouts
 			$stmt = $dbh->prepare($sqlSelect);
 			$stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
 			$stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
@@ -195,6 +196,8 @@ class WorkoutModelMapper extends BaseModelMapper{
 			if (!empty($firstLetter))  	$stmt->bindParam(':firstLetter', $firstLetter); 
 			if (!empty($diff))  		$stmt->bindParam(':diff', $diff); 
 			if (!empty($focus))  		$stmt->bindParam(':focus', $focus);
+			if (!empty($wId))  			$stmt->bindParam(':wId', $wId);
+
 
 			$stmt->execute();
 
@@ -228,36 +231,36 @@ class WorkoutModelMapper extends BaseModelMapper{
 	}
 
 /*	public function fetchBySearchData(Array &$model, $term, $diff, $focus){
-    	$dbh = $this->dbhandle;
-    	$success = false;
-    	$msg = "";
+		$dbh = $this->dbhandle;
+		$success = false;
+		$msg = "";
 
-    	try {
-    		if(empty($term) && empty($diff) && empty($focus)) throw new Exception('Error: No search data provided');
+		try {
+			if(empty($term) && empty($diff) && empty($focus)) throw new Exception('Error: No search data provided');
 
-	    	$sql = "SELECT 
-	    			wo_id, 
-	    			wo_name, 
-	    			wo_diff, 
-	    			wo_focus, 
-	    			wo_desc, 
-	    			wo_pr_id,
-	    			pr_id,
-	    			pr_name,
-	    			pr_desc FROM workout JOIN protocol ON workout.wo_pr_id = protocol.pr_id ";
-	    	
-	    	if (!empty($term) && !empty($diff) && !empty($focus)) $sql .= "WHERE wo_name LIKE :term AND wo_diff = :diff AND wo_focus = :focus";
-	    	else if (!empty($term) && !empty($focus)) $sql .= " WHERE wo_name LIKE :term AND  wo_focus = :focus";
-	    	else if (!empty($term) && !empty($diff)) $sql .= " WHERE wo_name LIKE :term AND wo_diff = :diff";
-	    	else if (!empty($focus) && !empty($diff)) $sql .= " WHERE wo_focus LIKE :focus' AND wo_diff = :diff";
-	    	else if (!empty($term)) $sql .= " WHERE wo_name LIKE :term";
+			$sql = "SELECT 
+					wo_id, 
+					wo_name, 
+					wo_diff, 
+					wo_focus, 
+					wo_desc, 
+					wo_pr_id,
+					pr_id,
+					pr_name,
+					pr_desc FROM workout JOIN protocol ON workout.wo_pr_id = protocol.pr_id ";
+			
+			if (!empty($term) && !empty($diff) && !empty($focus)) $sql .= "WHERE wo_name LIKE :term AND wo_diff = :diff AND wo_focus = :focus";
+			else if (!empty($term) && !empty($focus)) $sql .= " WHERE wo_name LIKE :term AND  wo_focus = :focus";
+			else if (!empty($term) && !empty($diff)) $sql .= " WHERE wo_name LIKE :term AND wo_diff = :diff";
+			else if (!empty($focus) && !empty($diff)) $sql .= " WHERE wo_focus LIKE :focus' AND wo_diff = :diff";
+			else if (!empty($term)) $sql .= " WHERE wo_name LIKE :term";
 			else if (!empty($diff)) $sql .= " WHERE wo_diff = :diff";
-	    	else if (!empty($focus)) $sql .= " WHERE wo_focus = :focus";
-	    	
-	    	$stmt = $dbh->prepare($sql);
-	    	if (!empty($term)) $stmt->bindValue(':term', '%' . $term .'%');
+			else if (!empty($focus)) $sql .= " WHERE wo_focus = :focus";
+			
+			$stmt = $dbh->prepare($sql);
+			if (!empty($term)) $stmt->bindValue(':term', '%' . $term .'%');
 			if (!empty($diff)) $stmt->bindParam(':diff', $diff);
-		    if (!empty($focus)) $stmt->bindParam(':focus', $focus);
+			if (!empty($focus)) $stmt->bindParam(':focus', $focus);
 
 			$stmt->execute();
 
@@ -292,20 +295,20 @@ class WorkoutModelMapper extends BaseModelMapper{
 				$msg = $e->xdebug_message;
 		}
 		return ['success' => $success, 'msg' => $msg];
-    }*/
-    public function delete($id){
-    	$dbh = $this->dbhandle;
-    	
-    	$stmt = $dbh->prepare("DELETE FROM workout_exercise WHERE wo_id = :id");
-    	$stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
+	}*/
+	/*public function delete($id){
+		$dbh = $this->dbhandle;
+		
+		$stmt = $dbh->prepare("DELETE FROM workout_exercise WHERE wo_id = :id");
+		$stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
 		$stmt->execute();
 
-    	$stmt = $dbh->prepare("DELETE FROM workout WHERE wo_id = :id");
-    	$stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
+		$stmt = $dbh->prepare("DELETE FROM workout WHERE wo_id = :id");
+		$stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
 		$count = $stmt->execute();
 		
 		return $count;
-    }
+	}*/
 }
 
 ?>

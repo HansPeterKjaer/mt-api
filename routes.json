@@ -1,8 +1,25 @@
-[    
+[   
     {
         "controller": "appController",
         "action": "WorkoutGeneratorAction",
-        "getVars": ["diff", "focus", "time"]
+        "getVars": ["wid", "diff", "focus", "time"]
+    }, 
+    {
+        "controller": "appController",
+        "action": "WorkoutGeneratorAction",
+        "getVars": ["diff", "focus", "time", "c_wid"],
+        "defaults": [{"wid": null}]
+    },
+    {
+        "controller": "appController",
+        "action": "WorkoutGeneratorAction",
+        "getVars": ["diff", "focus", "time"],
+        "defaults": [{"wid": null}]
+    },
+    {
+        "controller": "appController",
+        "action": "WorkoutGeneratorAction",
+        "getVars": ["wid"]
     },
     {
         "controller": "appController",

@@ -2,6 +2,7 @@
 	$formData = $viewModel->formData;
 	$focus = ($formData) ? $formData['focus'] : 1;
 	$diff = ($formData) ? intval($formData['diff']) : 3;
+	$wId = ($viewModel->workout) ? $viewModel->workout->id : null;
 ?>
 
 <h1 class="mt-panel__heading">Generer workout</h1>
@@ -15,7 +16,7 @@
 		</div>
 		<div class="col-xs-4">
 			<?php ViewHelper::renderPartial('appViews/_diff-icon', ['size' =>'sm', 'diff' => $diff ] ); ?>
-			<span id="diff-value" class="diff"><?php echo "(" . (6 - $diff) . "/". $diff ." )"; ?></span>
+			<span id="diff-value" class="diff hidden"><?php echo "(" . (6 - $diff) . "/". $diff ." )"; ?></span>
 		</div>
 	</div>
 	<div class="form-group">
@@ -40,5 +41,6 @@
 			</select>
 		</div>
 	</div>
+	<?php if($wId) echo "<input name='c_wid' type='hidden' value='$wId' />"?>
 	<button class="btn btn-lg btn-success pull-right">Generer Workout</button>
 </form>

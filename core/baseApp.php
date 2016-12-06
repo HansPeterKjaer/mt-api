@@ -15,17 +15,17 @@ class BaseApp{
 		$options = array(PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
 		
 		try {
-    		$this->dbhandle = new PDO('mysql:host=' . $this->dbhost . ';dbname=' . $this->dbname , $this->dbuser, $this->dbpass, $options);
-    	}
+			$this->dbhandle = new PDO('mysql:host=' . $this->dbhost . ';dbname=' . $this->dbname , $this->dbuser, $this->dbpass, $options);
+		}
 		catch(PDOException $e)
-    	{
-    		Logger::log('an error occured: ' . $e->getMessage()); 
-    		exit();
-    	}
+		{
+			Logger::log('an error occured: ' . $e->getMessage()); 
+			exit();
+		}
 
-    	Logger::initLogger(@constant('DEVELOPMENT_ENVIRONMENT'));
-    	
-    	$this->createController();
+		Logger::initLogger(@constant('DEVELOPMENT_ENVIRONMENT'));
+		
+		$this->createController();
 	}
 
 	function createController()
@@ -67,14 +67,14 @@ class BaseApp{
 		if(isset($_POST) && count($_POST) > 0 ){
 			// json decode if keyname is prefixed 'json-' .. Is this used anywhere??
 			foreach ($_POST as $key => $value) {
-	    		if (substr($key, 0, 5) == 'json-') {
-	        		$_POST[substr($key,5)] = json_decode($value);
-	    		}
+				if (substr($key, 0, 5) == 'json-') {
+					$_POST[substr($key,5)] = json_decode($value);
+				}
 			}
 			$postVars = $xssSecureHelper->xssSecure($_POST);
 		}		
 
-		$routes = json_decode(file_get_contents('./routes.json'),true);
+		$routes = json_decode(file_get_contents('./routes.json'), true);
 
 		$modelFactory = new ModelFactory($this->dbhandle);
 
@@ -101,47 +101,56 @@ class BaseApp{
 	}
 
 	function checkRoutes(&$args, $controllerName, $actionName, $getVars, $postVars, $urlVars, $fileVars, $routes){
+
 		foreach($routes as $r) {
 			if (strtolower($r['controller']) === strtolower($controllerName) && strtolower($r['action']) === strtolower($actionName)) {
-		    	if (array_key_exists('urlVars', $r)){
-		    		if (count($urlVars) != $r['urlVars']){ 
-		    			continue;
-		    		}
-			    	foreach($urlVars as $k=>$u){
-			    		$args["seg".$k] = $urlVars[$k];	
-			    	}
-			    }
-		    	
-		    	if (array_key_exists('getVars', $r)){
-		    		foreach($r['getVars'] as $g){
-			    		if(!array_key_exists($g, $getVars)){ 
-		    				$args = [];
-		    				continue(2);
-		    			}
-			    		$args[$g] = $getVars[$g];
-			    	}	
-		    	}
-		    	
-		    	if (array_key_exists('postVars', $r)){		    	
-			    	foreach($r['postVars'] as $p){
-			    		if(!array_key_exists($p, $postVars)){ 
-		    				$args = [];
-		    				continue(2);
-		    			}
-			    		$args[$p] = $postVars[$p];	
-			    	}
-			    }
-			    if (array_key_exists('fileVars', $r)){		    	
-			    	foreach($r['fileVars'] as $p){
-			    		if(!array_key_exists($p, $fileVars)){ 
-		    				$args = [];
-		    				continue(2);
-		    			}
-			    		$args[$p] = $fileVars[$p];	
-			    	}
-			    }
-		    	return true;
-		  	}
+				if (array_key_exists('urlVars', $r)){
+					if (count($urlVars) != $r['urlVars']){ 
+						continue;
+					}
+					foreach($urlVars as $k=>$u){
+						$args["seg".$k] = $urlVars[$k];	
+					}
+				}
+				
+				if (array_key_exists('getVars', $r)){
+					foreach($r['getVars'] as $g){
+						if(!array_key_exists($g, $getVars)){ 
+							$args = [];
+							continue(2);
+						}
+						$args[$g] = $getVars[$g];
+					}	
+				}
+				
+				if (array_key_exists('postVars', $r)){		    	
+					foreach($r['postVars'] as $p){
+						if(!array_key_exists($p, $postVars)){ 
+							$args = [];
+							continue(2);
+						}
+						$args[$p] = $postVars[$p];	
+					}
+				}
+
+				if (array_key_exists('fileVars', $r)){		    	
+					foreach($r['fileVars'] as $p){
+						if(!array_key_exists($p, $fileVars)){ 
+							$args = [];
+							continue(2);
+						}
+						$args[$p] = $fileVars[$p];	
+					}
+				}
+
+				if(array_key_exists('defaults', $r)){
+					foreach($r['defaults'] as $d){
+						$args = $d + $args;
+					}
+				}
+
+				return true;
+			}
 		}
 		return false;
 	}

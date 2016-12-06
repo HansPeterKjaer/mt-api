@@ -13,21 +13,23 @@ class AppController extends BaseController {
 		$this->view->output('/appViews/generator', $viewModel, false);
 	}
 
-	public function WorkoutGeneratorAction($diff = null, $focus = null, $time = null){
+	public function WorkoutGeneratorAction($wid = null, $diff = null, $focus = null, $time = null, $c_wid = null){
 		$workoutListModel = $this->modelFactory->buildObject('WorkoutListModel');
 		$viewModel = $this->modelFactory->buildObject('WorkoutViewModel');
+		$workoutModelMapper = $this->modelFactory->buildMapper('WorkoutModelMapper');
 
-    	if($diff != null){
-    		$workoutModelMapper = $this->modelFactory->buildMapper('WorkoutModelMapper');
-    		$workoutModelMapper->search($workoutListModel, 1, 1, null, null, 'rand', $diff, $focus);
-			$viewModel->formData = ['diff'=>$diff, 'focus'=>$focus, 'time'=>$time];    		
+		if($wid != null){
+			$workoutModelMapper->fetchById($viewModel->workout, $wid);
+		}
+    	else if($diff != null){
+    		$diff = round($diff);
+    		$workoutModelMapper->search($workoutListModel, 1, 1, null, null, 'rand', $diff, $focus, $c_wid);
+    		$viewModel->workout = (count($workoutListModel->workouts) > 0) ? $workoutListModel->workouts[0] : null;
+			$viewModel->formData = ['diff'=>$diff, 'focus'=>$focus, 'time'=>$time];    // maybe not formdata?		
     	}
     	else{
     		$viewModel->formData = null;
     	}
-
-    	$viewModel->workout = (count($workoutListModel->workouts) > 0) ? $workoutListModel->workouts[0] : null;
-
 		$this->view->output('/appViews/generator', $viewModel);
 	}
 
