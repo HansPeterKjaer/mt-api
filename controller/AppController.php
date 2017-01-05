@@ -1,5 +1,5 @@
 <?php 
-class AppController extends BaseController {
+class generatorController extends BaseController {
 	public function GetWorkoutAction($wo_id){
 		$viewModel = null;
 
@@ -13,7 +13,7 @@ class AppController extends BaseController {
 		$this->view->output('/appViews/generator', $viewModel, false);
 	}
 
-	public function WorkoutGeneratorAction($wid = null, $diff = null, $focus = null, $time = null, $c_wid = null){
+	public function workoutAction($wid = null, $diff = null, $focus = null, $time = null, $c_wid = null){
 		$workoutListModel = $this->modelFactory->buildObject('WorkoutListModel');
 		$viewModel = $this->modelFactory->buildObject('WorkoutViewModel');
 		$workoutModelMapper = $this->modelFactory->buildMapper('WorkoutModelMapper');

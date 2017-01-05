@@ -1,37 +1,76 @@
 [   
     {
-        "controller": "appController",
-        "action": "WorkoutGeneratorAction",
+        "controller": "generatorController",
+        "action": "workoutAction",
         "getVars": ["wid", "diff", "focus", "time"]
-    }, 
+    },
     {
-        "controller": "appController",
-        "action": "WorkoutGeneratorAction",
+        "controller": "generatorController",
+        "action": "workoutAction",
+        "postVars": ["wid", "diff", "focus", "time"]
+    },
+    {
+        "controller": "generatorController",
+        "action": "workoutAction",
+        "postVars": ["diff", "focus", "time"],
+        "urlVars": ["wid"]
+    },
+    {
+        "controller": "generatorController",
+        "action": "workoutAction",
+        "getVars": ["diff", "focus", "time"],
+        "urlVars": ["wid"]
+    },  
+    {
+        "controller": "generatorController",
+        "action": "workoutAction",
         "getVars": ["diff", "focus", "time", "c_wid"],
         "defaults": [{"wid": null}]
     },
     {
-        "controller": "appController",
-        "action": "WorkoutGeneratorAction",
+        "controller": "generatorController",
+        "action": "workoutAction",
+        "postVars": ["diff", "focus", "time", "c_wid"],
+        "defaults": [{"wid": null}]
+    },
+    {
+        "controller": "generatorController",
+        "action": "workoutAction",
         "getVars": ["diff", "focus", "time"],
         "defaults": [{"wid": null}]
     },
     {
-        "controller": "appController",
-        "action": "WorkoutGeneratorAction",
+        "controller": "generatorController",
+        "action": "workoutAction",
+        "postVars": ["diff", "focus", "time"],
+        "defaults": [{"wid": null}]
+    },
+    {
+        "controller": "generatorController",
+        "action": "workoutAction",
         "getVars": ["wid"]
     },
     {
-        "controller": "appController",
-        "action": "WorkoutGeneratorAction"
+        "controller": "generatorController",
+        "action": "workoutAction",
+        "postVars": ["wid"]
     },
     {
-        "controller": "appController",
+        "controller": "generatorController",
+        "action": "workoutAction",
+        "urlVars": ["wid"]
+    },
+    {
+        "controller": "generatorController",
+        "action": "workoutAction"
+    },
+    {
+        "controller": "generatorController",
         "action": "WorkoutAction",
         "urlVars": 1
     },
     {
-        "controller": "appController",
+        "controller": "generatorController",
         "action": "GetWorkoutAction"
     }
 ]

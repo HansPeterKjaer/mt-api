@@ -14,6 +14,6 @@ define ('APP_DBNAME', 'mt');
 define ('APP_DBUSER', 'root');
 define ('APP_DBPASS', null);	
 
-$defaultController = 'AppController';
-$defaultAction = 'WorkoutGeneratorAction';
+$defaultController = 'generatorController';
+$defaultAction = 'workoutAction';
 ?>

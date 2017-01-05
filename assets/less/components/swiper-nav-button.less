@@ -1,0 +1,45 @@
+.swiper-nav-button{
+	display: none;
+	@media (min-width: @screen-sm){ display: block; }
+
+	position: absolute;
+	top: 50%;
+	width: 10px;
+	height: 44px;
+	margin-top: -22px;
+	z-index: 10;
+	cursor: pointer;
+	-moz-background-size: 27px 44px;
+	-webkit-background-size: 27px 44px;
+	background-size: 27px 44px;
+	background-position: center;
+	background-repeat: no-repeat;
+	opacity: 0.6;
+
+	&:hover{
+		width: 50px;
+	}
+
+	&--next{		
+		background-color: #fff;
+		border-radius: 0 4px 4px 0;
+		.encoded-svg-background("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 27 44'><path d='M27,22L27,22L5,44l-2.1-2.1L22.8,22L2.9,2.1L5,0L27,22L27,22z' fill='#007aff'/></svg>");
+		background-size: contain;
+		right: 0px;
+		left: auto;
+	}
+	&--prev{
+		background-color: #fff;
+		border-radius: 0 4px 4px 0;
+		.encoded-svg-background("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 27 44'><path d='M0,22L22,0l2.1,2.1L4.2,22l19.9,19.9L22,44L0,22L0,22L0,22z' fill='#007aff'/></svg>");
+		background-size: contain;
+		left: 0px;
+		right: auto;
+	}
+	&--disabled{
+		display:none;
+		/*opacity: 0.35;
+		cursor: auto;
+		pointer-events: none;*/
+	}
+}

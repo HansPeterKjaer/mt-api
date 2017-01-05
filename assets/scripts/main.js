@@ -32,6 +32,9 @@ var Swiper = require('swiper');
 	    scrollbarSnapOnRelease: true,
         slidesPerView: 'auto',
         //centeredSlides: false,
+        nextButton: '.swiper-nav-button--next',
+        prevButton: '.swiper-nav-button--prev',
+        buttonDisabledClass: 'swiper-nav-button--disabled',
         grabCursor: true
   	})   
 	var v2Swiper = new Swiper('.swiper-container-v2', {

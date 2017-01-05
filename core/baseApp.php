@@ -104,12 +104,14 @@ class BaseApp{
 
 		foreach($routes as $r) {
 			if (strtolower($r['controller']) === strtolower($controllerName) && strtolower($r['action']) === strtolower($actionName)) {
+				
 				if (array_key_exists('urlVars', $r)){
-					if (count($urlVars) != $r['urlVars']){ 
+					if (count($urlVars) != count($r['urlVars'])){ 
+						$args = [];
 						continue;
 					}
-					foreach($urlVars as $k=>$u){
-						$args["seg".$k] = $urlVars[$k];	
+					foreach($urlVars as $k=>$v){
+						$args[$r['urlVars'][$k]] = $v;	
 					}
 				}
 				
@@ -148,7 +150,7 @@ class BaseApp{
 						$args = $d + $args;
 					}
 				}
-
+				Logger::log($args);
 				return true;
 			}
 		}

@@ -2,6 +2,7 @@
 
 class Logger {
 	private $dev = true;
+	private $msg = '';
 	private static $_instance;
 
  	private function __construct($dev){
@@ -18,12 +19,15 @@ class Logger {
  	public static function log($output){
  		if(self::$_instance->dev){
  			if(is_array($output)){
- 				var_dump($output);
+ 				self::$_instance->msg .= var_export($output, true) . '\n\n';
  			}
  			else{
- 				echo($output);
+ 				self::$_instance->msg .= $output. '\n\n';
  			}
  		}
+ 	}
+ 	public static function consoleLog(){
+ 		echo '<script>console.log(' . json_encode(self::$_instance->msg) . ');</script>';
  	}
 }
 

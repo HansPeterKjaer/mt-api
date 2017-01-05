@@ -32,6 +32,7 @@
 
 		
 		<script src="<?php URLHelper::renderURL('assets/scripts/bundle.js'); ?>"></script>
+		<?php Logger::consoleLog(); ?>
 	</body>
 </html> 
  
