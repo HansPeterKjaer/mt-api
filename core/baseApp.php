@@ -95,7 +95,7 @@ class BaseApp{
 		}
 		catch(Exception $e){
 			Logger::log($e);
-			$controller = new ErrorController($modelFactory, new Auth($this->dbhandle));
+			$controller = new ErrorController($modelFactory);
 			$controller->action("PageDoesNotExistAction", $args);		
 		}
 	}

@@ -1,12 +1,10 @@
 <?php 
 abstract class BaseController{
 	protected $modelFactory;
-	protected $auth;
 	protected $view;
 
-	public function __construct(ModelFactory $modelFactory, $auth){
+	public function __construct(ModelFactory $modelFactory){
 		$this->modelFactory = $modelFactory;
-		$this->auth = $auth;
 	}
 	public function action($actionName, $parms){
 		$this->view = new View();

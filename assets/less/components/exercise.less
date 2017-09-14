@@ -6,7 +6,7 @@
 		margin-bottom: 10px;
 		line-height: 1;
 		background: #ccc;
-    	padding-bottom: 100%;
+    	//padding-bottom: 100%;
 
 		.mt-panel__heading,
 		.exercise__description,
@@ -30,7 +30,8 @@
 		}
 
 		> .imageviewer{
-			position: absolute;
+			//position: absolute;
+			
 		}
 
 		&:after{
@@ -52,12 +53,14 @@
 }
 
 .imageviewer{
-	
 	position: relative;
+	padding-bottom: 100%;
+    background: #ccc;
 
 	&__image{
 		width:100%;
 		display:none;
+		position: absolute;
 
 		&.current{
 			display: inline-block;

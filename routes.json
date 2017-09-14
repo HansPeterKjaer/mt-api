@@ -1,76 +1,85 @@
 [   
     {
-        "controller": "generatorController",
+        "controller": "ApiController",
         "action": "workoutAction",
+        "getVars": ["id"]   
+    },
+    {
+        "controller": "ApiController",
+        "action": "exerciseAction",
+        "getVars": ["id"]   
+    },
+    {
+        "controller": "ApiController",
+        "action": "searchWorkoutAction",
+        "getVars": ["diff", "focus", "time", "c_wid"]
+    },
+    {
+        "controller": "GeneratorController",
+        "action": "indexAction",
         "getVars": ["wid", "diff", "focus", "time"]
     },
     {
-        "controller": "generatorController",
-        "action": "workoutAction",
+        "controller": "GeneratorController",
+        "action": "indexAction",
         "postVars": ["wid", "diff", "focus", "time"]
     },
     {
-        "controller": "generatorController",
-        "action": "workoutAction",
+        "controller": "GeneratorController",
+        "action": "indexAction",
         "postVars": ["diff", "focus", "time"],
         "urlVars": ["wid"]
     },
     {
-        "controller": "generatorController",
-        "action": "workoutAction",
+        "controller": "GeneratorController",
+        "action": "indexAction",
         "getVars": ["diff", "focus", "time"],
         "urlVars": ["wid"]
     },  
     {
-        "controller": "generatorController",
-        "action": "workoutAction",
+        "controller": "GeneratorController",
+        "action": "indexAction",
         "getVars": ["diff", "focus", "time", "c_wid"],
         "defaults": [{"wid": null}]
     },
     {
-        "controller": "generatorController",
-        "action": "workoutAction",
-        "postVars": ["diff", "focus", "time", "c_wid"],
-        "defaults": [{"wid": null}]
-    },
-    {
-        "controller": "generatorController",
-        "action": "workoutAction",
+        "controller": "GeneratorController",
+        "action": "indexAction",
         "getVars": ["diff", "focus", "time"],
         "defaults": [{"wid": null}]
     },
     {
-        "controller": "generatorController",
-        "action": "workoutAction",
+        "controller": "GeneratorController",
+        "action": "indexAction",
         "postVars": ["diff", "focus", "time"],
         "defaults": [{"wid": null}]
     },
     {
-        "controller": "generatorController",
-        "action": "workoutAction",
+        "controller": "GeneratorController",
+        "action": "indexAction",
         "getVars": ["wid"]
     },
     {
-        "controller": "generatorController",
-        "action": "workoutAction",
+        "controller": "GeneratorController",
+        "action": "indexAction",
         "postVars": ["wid"]
     },
     {
-        "controller": "generatorController",
-        "action": "workoutAction",
+        "controller": "GeneratorController",
+        "action": "indexAction",
         "urlVars": ["wid"]
     },
     {
-        "controller": "generatorController",
-        "action": "workoutAction"
+        "controller": "GeneratorController",
+        "action": "indexAction"
     },
     {
-        "controller": "generatorController",
-        "action": "WorkoutAction",
+        "controller": "GeneratorController",
+        "action": "indexAction",
         "urlVars": 1
     },
     {
-        "controller": "generatorController",
-        "action": "GetWorkoutAction"
+        "controller": "GeneratorController",
+        "action": "GetindexAction"
     }
 ]

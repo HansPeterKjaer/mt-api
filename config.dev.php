@@ -15,5 +15,5 @@ define ('APP_DBUSER', 'root');
 define ('APP_DBPASS', null);	
 
 $defaultController = 'generatorController';
-$defaultAction = 'workoutAction';
+$defaultAction = 'indexAction';
 ?>

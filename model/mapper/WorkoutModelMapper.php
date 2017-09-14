@@ -111,10 +111,10 @@ class WorkoutModelMapper extends BaseModelMapper{
 			
 			if (!empty($row)){
 				//$model = new WorkoutModel();
-				$model->id = $row['wo_id'];
+				$model->id = (int)$row['wo_id'];
 				$model->name = $row['wo_name'];
-				$model->diff = $row['wo_diff'];
-				$model->focus = $row['wo_focus'];
+				$model->diff = (int)$row['wo_diff'];
+				$model->focus = (int)$row['wo_focus'];
 				$model->descr = $row['wo_desc'];
 				$model->protocol = new ProtocolModel();
 

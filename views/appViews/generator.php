@@ -5,17 +5,17 @@
 <div class="row swiper-container swiper-container-h">
 	<div class="swiper-wrapper top-margin no-gutters">
 		
-		<div class="col-xs-12 col-sm-6 col-lg-4 swiper-slide c1" >
-			<div class="mt-panel clearfix mt-panel--light generator-panel">
+		<div class="col-xs-12 col-sm-6 col-lg-4 swiper-slide bg--light" >
+			<div class="mt-panel clearfix generator-panel">
 				<?php ViewHelper::renderPartial("appViews/_generatorForm", $viewModel); ?>
 			</div>
 		</div>
 
 
-		<div class="col-xs-12 col-sm-6 col-lg-4 swiper-slide c2 <?php if ($formData == null && $wo->id == null){ echo 'hidden'; } ?> " >
+		<div class="col-xs-12 col-sm-6 col-lg-4 swiper-slide bg--medium <?php if ($formData == null && $wo->id == null){ echo 'hidden'; } ?> " >
 			<div class="swiper-container swiper-container-v2">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide mt-panel clearfix mt-panel--medium workout-panel">
+					<div class="swiper-slide mt-panel clearfix workout-panel">
 						<?php 
 							if($wo != null){
 								ViewHelper::renderPartial("appViews/_workout", $wo);
@@ -34,10 +34,10 @@
 		</div>	
 		
 
-		<div class="col-xs-12 col-sm-6 col-lg-4 swiper-slide hidden c3" >
+		<div class="col-xs-12 col-sm-6 col-lg-4 swiper-slide hidden bg--dark" >
 			<div class="swiper-container swiper-container-v3">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide mt-panel clearfix mt-panel--dark exercise-panel">	
+					<div class="swiper-slide mt-panel clearfix exercise-panel">	
 						<div class="exercise"></div>
 					</div>		
 				</div>

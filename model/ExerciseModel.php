@@ -15,7 +15,11 @@ class ExerciseModel implements JsonSerializable{
 	public function jsonSerialize() {
         return [
             'id' => $this->id,
-            'name' => $this->name
+            'name' => $this->name,
+            'images' => $this->images,
+            'diff' => $this->diff,
+            'focus' => $this->focus,
+            'descr' => htmlspecialchars_decode($this->descr)
         ];
     }
 }
