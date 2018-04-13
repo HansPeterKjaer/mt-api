@@ -15,6 +15,10 @@
         "getVars": ["diff", "focus", "time", "c_wid"]
     },
     {
+        "controller": "ApiController",
+        "action": "getAllWorkoutsAction"
+    },
+    {
         "controller": "GeneratorController",
         "action": "indexAction",
         "getVars": ["wid", "diff", "focus", "time"]
