@@ -61,5 +61,13 @@ class ApiController extends BaseController {
     		$this->view->outputJSON(['success' => false, 'message' => '']);
     	}
 	}
+
+	protected function getExerciseListAction(){
+		$model = array();
+		$mapper = $this->modelFactory->buildMapper('ExerciseModelMapper');
+		$mapper->fetchAll($model, false);
+
+		$this->view->outputJSON($model);
+	}
 }
 ?>

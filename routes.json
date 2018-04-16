@@ -19,6 +19,10 @@
         "action": "getAllWorkoutsAction"
     },
     {
+        "controller": "ApiController",
+        "action": "getExerciseListAction"
+    },
+    {
         "controller": "GeneratorController",
         "action": "indexAction",
         "getVars": ["wid", "diff", "focus", "time"]
